@@ -1,0 +1,26 @@
+body {
+            background-image: url('../img/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background-color: rgba(246, 244, 239, 0.9);
+            box-shadow: 0 0 20px rgba(88, 114, 82, 0.3);
+        }
+
+        .card:hover {
+            box-shadow: 0 0 0 7px rgba(153, 255, 130, 0.9);
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 1rem;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 1px 1px 12px rgba(88, 114, 82, 0.9);
+        }

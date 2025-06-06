@@ -1,0 +1,28 @@
+ body {
+    background-color: #f6f4ef;
+  }
+  .sidebar {
+    min-width: 220px;
+    background-color: #2e7d32;
+    color: white;
+    min-height: 100vh;
+  }
+  .sidebar .nav-link,
+  .sidebar .navbar-brand {
+    color: white;
+  }
+  .sidebar .nav-link.active,
+  .sidebar .nav-link:hover {
+    background-color: #1b5e20;
+    color: #fff;
+  }
+  .hero {
+    background: url('hero.jpg') center/cover no-repeat;
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+  }
