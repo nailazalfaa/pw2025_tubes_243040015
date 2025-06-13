@@ -53,29 +53,33 @@ if (isset($_POST['menu'])) {
     
         <div class="card p-4 shadow" style="width: 500px;" data-aos="zoom-in">
             <h3 class="mb-4 text-center">Tambah Menu</h3>
-            <form method="post" autocomplete="off">
+            <form method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="nama_makanan" class="form-label">Nama Makanan</label>
-                    <input id="nama_makanan" name="nama_makanan" required type="text" class="form-control" placeholder="Masukkan nama makanan" />
-                </div>
-                <div class="mb-3">
-                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea id="deskripsi" name="deskripsi" required class="form-control" rows="2" placeholder="Deskripsi singkat"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="harga" class="form-label">Harga</label>
-                    <input id="harga" name="harga" required type="number" min="0" class="form-control" placeholder="Masukkan harga" />
+                    <input id="nama_makanan" name="nama" required class="form-control" placeholder="Masukkan nama makanan" type="varchar" />
                 </div>
                 <div class="mb-3">
                     <label for="kategori" class="form-label">Kategori</label>
-                    <input id="kategori" name="kategori" required type="text" class="form-control" placeholder="Masukkan kategori" />
+                    <input id="kategori" name="kategori" required class="form-control" placeholder="Masukkan kategori" type="varchar"/>
+                </div>
+                <div class="mb-3">
+                    <label for="harga" class="form-label">Harga</label>
+                    <input id="harga" name="harga" required min="0" class="form-control" placeholder="Masukkan harga" type="decimal"/>
+                </div>
+                <div class="mb-3">
+                    <label for="jumlah" class="form-label">Jumlah</label>
+                    <textarea id="jumlah" name="jumlah" required class="form-control" rows="2" placeholder="Jumlah" type="varchar"></textarea>
+                </div>
+                 <div class="mb-3">
+                    <label for="foto_menu" class="form-label">Foto Menu</label>
+                    <input id="foto_menu" name="foto_menu" required min="0" class="form-control" placeholder="Masukkan foto" type="file" onchange="priviewImage(event)"/>
                 </div>
                 <div class="mb-3">
                     <label for="status_ketersediaan" class="form-label">Status Ketersediaan</label>
-                    <select id="status_ketersediaan" name="status_ketersediaan" required class="form-control">
+                    <select id="status_ketersediaan" name="status_ketersediaan" required class="form-control" type="enum">
                         <option value="">Pilih status</option>
-                        <option value="Tersedia">true</option>
-                        <option value="Habis">false</option>
+                        <option value="Tersedia">Tersedia</option>
+                        <option value="Habis">Tidak Tersedia</option>
                     </select>
                 </div>
                 <button class="btn btn-success w-100" type="submit" name="menu">Submit</button>

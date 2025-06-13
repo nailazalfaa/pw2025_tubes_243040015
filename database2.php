@@ -12,15 +12,5 @@ function select($query)
     return $rows;
 }
 
-function create_pendaftaran($data) {
- global $db;
- $username = $data['username'];
- $email = $data['email'];
- $password = $data['password'];
- $query = "INSERT INTO data_pendaftaran VALUES (null, '$username', '$email', '$password')";
- mysqli_query($db, $query);
 
- return mysqli_affected_rows($db);
-
-}
 ?>

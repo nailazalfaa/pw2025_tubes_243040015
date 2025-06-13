@@ -1,0 +1,52 @@
+body {
+      background-color: #f6f4ef;
+    }
+
+    .sidebar {
+      min-width: 220px;
+      background-color: #2e7d32;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .sidebar .nav-link,
+    .sidebar .navbar-brand {
+      color: white;
+    }
+
+    .sidebar .nav-link.active,
+    .sidebar .nav-link:hover {
+      background-color: #1b5e20;
+      color: #fff;
+    }
+
+    .hero {
+      background: url('hero.jpg') center/cover no-repeat;
+      background-blend-mode: darken;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .navbar {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 8px;
+    }
+
+    .btn-custom {
+      min-width: 70px;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+      background-color: #f3f6f9;
+    }

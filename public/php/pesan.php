@@ -1,4 +1,12 @@
-<?php include '../../admin/php/database.php' ?>
+<?php include '../../admin/php/database.php';
+
+$query = "SELECT * FROM data_menu";
+$result = mysqli_query($db, $query);
+if (!$result) {
+    die("Query gagal: " . mysqli_error($db));
+}   
+$row_menu = mysqli_fetch_all($result, MYSQLI_ASSOC);
+?>
 
 <?php 
 if (isset($_POST['pesan'])) {
@@ -19,53 +27,7 @@ if (isset($_POST['pesan'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #e8f5e9 0%, #fffde7 100%);
-            min-height: 100vh;
-            font-family: 'Montserrat', Arial, sans-serif;
-        }
-        .navbar {
-            background: linear-gradient(90deg, #388e3c 60%, #43a047 100%) !important;
-            box-shadow: 0 4px 16px rgba(46,125,50,0.13);
-        }
-        .navbar-brand img {
-            width: 90px; height: 70px;
-            filter: drop-shadow(0 2px 8px rgba(46,125,50,0.15));
-        }
-        .navbar-nav .nav-link {
-            transition: background 0.2s, color 0.2s;
-            border-radius: 8px;
-            margin: 0 12px;
-            padding: 8px 18px;
-            font-size: 1.1rem;
-        }
-        .navbar-nav .nav-link:hover, 
-        .navbar-nav .nav-link:focus, 
-        .navbar-nav .nav-link.active {
-            background: #fff;
-            color: #388e3c !important;
-            font-weight: bold;
-        }
-        footer {
-            background: #e8f5e9;
-            color: #388e3c;
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-        .footer-social {
-            margin-top: 8px;
-        }
-        .footer-social a {
-            color: #388e3c;
-            margin: 0 8px;
-            font-size: 1.3rem;
-            transition: color 0.2s;
-        }
-        .footer-social a:hover {
-            color: #ffb300;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/pesan.css">
 </head>
 <body>
     <!-- Awal Navbar -->
@@ -88,6 +50,9 @@ if (isset($_POST['pesan'])) {
                     <li class="nav-item">
                         <a class="nav-link active" href="pesan.php"><i class="fa-solid fa-envelope"></i> Pesan</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="../../index.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                    </li>                    
                 </ul>
             </div>
         </div>
@@ -148,12 +113,13 @@ if (isset($_POST['pesan'])) {
                                         "Kopi Tubruk"
                                     ];
                                     ?>
-                                    <input class="form-control rounded-3 shadow-sm" list="menuList" id="menu" name="menu" placeholder="Ketik atau pilih menu" required>
-                                    <datalist id="menuList">
-                                        <?php foreach($menuList as $menu): ?>
-                                            <option value="<?= htmlspecialchars($menu) ?>">
+                                     <input type="hidden" id="id_menu" name="id_menu">
+                                    <select name="menu" id="menu" class="form-control rounded-3 shadow-sm" required onchange="tampilkanNama()">
+                                        <option value="">Pilih Menu</option>
+                                          <?php foreach($row_menu as $menu): ?>
+                                            <option value="<?= $menu['nama'] ?>" data-id="<?= $menu['id'] ?>"><?= htmlspecialchars($menu['nama']) ?></option>
                                         <?php endforeach; ?>
-                                    </datalist>
+                                    </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="jumlah" class="form-label fw-semibold">
@@ -206,5 +172,14 @@ if (isset($_POST['pesan'])) {
     </footer>
     <!-- Akhir Footer -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function tampilkanNama() {
+            const selectMenu = document.getElementById('menu');
+            const selectedOption = selectMenu.options[selectMenu.selectedIndex];
+            const menuId = selectedOption.getAttribute('data-id');
+            const idMenuInput = document.getElementById('id_menu');
+            idMenuInput.value = menuId;
+        }
+    </script>
 </body>
 </html>

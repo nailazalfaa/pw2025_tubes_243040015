@@ -1,18 +1,48 @@
 <?php
 session_start();
+include './admin/php/database.php';
 
-$error = "";
+$error = ""; // Inisialisasi variabel error
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $username = $_POST['username'] ?? "";
-    $password = $_POST['password'] ?? "";
+// Cek apakah tombol login ditekan
+if (isset($_POST['login'])) {
+    global $db;
 
-    if ($username === "nailazalfa" && $password === "12345") {
-        $_SESSION['username'] = $username;
-        header("Location: ./admin/php/DataPesanan.php");
-        exit();
+    // Pastikan koneksi database tersedia
+    if (!$db) {
+        die("Koneksi database gagal: " . mysqli_connect_error());
+    }
+
+    // Ambil input username dan password dengan sanitasi
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+
+    // Cek username di database
+    $result = mysqli_query($db, "SELECT * FROM data_pendaftaran WHERE username = '$username'");
+
+    if (!$result) {
+        die("Query gagal: " . mysqli_error($db));
+    }
+
+    // Jika username ditemukan
+    if (mysqli_num_rows($result) == 1) {
+        $data = mysqli_fetch_assoc($result);
+
+        if ($password === $data['password']) {
+            // Set session (tanpa menyimpan password)
+            $_SESSION['id'] = $data['id'];
+            $_SESSION['username'] = $data['username'];
+            $_SESSION['email'] = $data['email'];
+
+            // Redirect ke halaman utama
+            header("Location: ./public/php/home.php");
+            exit(); // Menghentikan eksekusi kode setelah redirect
+        } else {
+            $error = "Password salah!";
+        }
+       
     } else {
-        $error = "Username atau Password salah!!";
+        $error = "Username tidak ditemukan!";
     }
 }
 ?>
@@ -36,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </style>
 <body >
     <div class="container d-flex align-items-center justify-content-center" style="min-height:100vh;">
-        <div class="card p-4 shadow-lg" style="width: 22rem;" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out">
+        <div class="card p-4 shadow-lg" style="width: 22rem;" data-aos="fade-up" data-aos-duration="800" data-aos-easing="ease-in-out">
             <h2 class="text-center mb-3" data-aos="fade-down" data-aos-delay="200">Login admin</h2>
             <img src="img/nasi oncom.jpg" class="logo mb-3 mx-auto d-block rounded-circle shadow" alt="Logo" style="width:100px;" data-aos="zoom-in" data-aos-delay="400">
             <?php if (!empty($error)): ?>
-                <div class="alert alert-danger text-center py-2" data-aos="fade-in" data-aos-delay="600"><?= $error ?></div>
+                <div class="alert alert-danger text-center py-2" data-aos="fade-in" data-aos-delay="200"><?= $error ?></div>
             <?php endif; ?>
-            <form method="post" data-aos="fade-up" data-aos-delay="800">
+            <form method="post" data-aos="fade-up" data-aos-delay="400">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username:</label>
                     <input id="username" name="username" required type="text" class="form-control" />
@@ -51,12 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <label for="password" class="form-label">Password:</label>
                     <input id="password" name="password" required type="password" class="form-control">
                 </div>
-                <button class="btn btn-success w-100" type="submit" data-aos="zoom-in" data-aos-delay="1000">Login</button>
+                <button class="btn btn-success w-100" type="submit" data-aos="zoom-in" data-aos-delay="600"  name="login">Login</button>
             </form>
-            <hr data-aos="fade-in" data-aos-delay="1200">
-            <div class="pendaftarn text-center" data-aos="fade-up" data-aos-delay="1400">
+            <hr data-aos="fade-in" data-aos-delay="600">
+            <div class="pendaftarn text-center" data-aos="fade-up" data-aos-delay="800">
                 <p>Belum punya akun?
-                <a href="Pendaftaran.php" >Daftar Akun</a></p>
+                <a href="Pendaftaran.php">Daftar Akun</a></p>
             </div>
         </div>
     </div>
@@ -69,5 +99,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     easing: 'ease-in-out',
   });
 </script>
-
 </html>

@@ -1,9 +1,9 @@
-<?php include 'database2.php'?>
+<?php include './admin/php/database.php'?>
 
 <?php 
 if (isset($_POST['pendaftaran'])) {
     if(create_pendaftaran($_POST) > 0) {
-        echo "<script>alert('data akun berhasil ditambahkan.'); </script>";
+        echo "<script>alert('data akun berhasil ditambahkan.'); window.location.href = 'index.php'; </script>";
     } else {
         echo "<script>alert('data akun gagal ditambahkan.'); </script>";
     }
