@@ -118,7 +118,6 @@ if (session_status() === PHP_SESSION_NONE) {
       </div>
     </div>
     <!-- End Dashboard Cards -->
-
   </div>
   <!-- End Main Content -->
 </div>

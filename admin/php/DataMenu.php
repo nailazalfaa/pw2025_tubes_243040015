@@ -76,11 +76,9 @@ if (isset($_POST['submit'])) {
       ▼
     </button>
     <ul class="dropdown-menu dropdown-menu-end">
-      <li><a class="dropdown-item" href="#">Profile</a></li>
-      <li><a class="dropdown-item" href="#">Ubah Password</a></li>
       <li>
       <form method="POST" class="d-inline">
-      <button type="submit" name="logout" class="dropdown-item">Logout</button>
+      <button type="submit" name="logout" class="dropdown-item" href="../../index.php">Logout</button>
       </form>
       </li>
     </ul>

@@ -51,6 +51,206 @@ $carouselItems = [
     <!-- AOS CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
+<style>
+            body {
+            background: linear-gradient(135deg, #e8f5e9 0%, #fffde7 100%);
+            min-height: 100vh;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #388e3c 60%, #43a047 100%) !important;
+            box-shadow: 0 4px 16px rgba(46,125,50,0.13);
+        }
+        .navbar-brand img {
+            width: 90px; height: 70px;
+            filter: drop-shadow(0 2px 8px rgba(46,125,50,0.15));
+        }
+        .navbar-nav .nav-link {
+            transition: background 0.2s, color 0.2s;
+            border-radius: 8px;
+            margin: 0 12px;
+            padding: 8px 18px;
+            font-size: 1.1rem;
+        }
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link:focus, 
+        .navbar-nav .nav-link.active {
+            background: #fff;
+            color: #388e3c !important;
+            font-weight: bold;
+        }
+        
+        /* Carousel fade effect */
+        .carousel-fade .carousel-item {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .carousel-fade .carousel-item.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .carousel-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            height: 340px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+        }
+        .carousel-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 340px;
+            transition: transform 0.5s;
+            filter: brightness(0.95) contrast(1.05);
+        }
+        .carousel-item img:hover {
+            transform: scale(1.04) rotate(-1deg);
+        }
+        .carousel-caption {
+            background: rgba(46,125,50,0.7);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        /* Menu Card */
+        .menu-card {
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s;
+            box-shadow: 0 2px 16px rgba(46,125,50,0.09);
+            background: linear-gradient(120deg, #fff 80%, #e8f5e9 100%);
+            position: relative;
+        }
+        .menu-card:hover {
+            transform: translateY(-10px) scale(1.04) rotate(-1deg);
+            box-shadow: 0 8px 32px rgba(46,125,50,0.18);
+        }
+        .menu-img {
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            object-fit: cover;
+            height: 220px;
+            transition: filter 0.3s;
+        }
+        .menu-card:hover .menu-img {
+            filter: brightness(0.93) blur(1px);
+        }
+        .menu-body {
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            background: #fff;
+            padding-bottom: 1.5rem;
+        }
+        .menu-icon {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 2rem;
+            color: #43a047;
+            opacity: 0.7;
+        }
+        .badge-favorit {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: linear-gradient(90deg, #ffb300 0%, #ffd54f 100%);
+            color: #fff;
+            font-weight: bold;
+            border-radius: 12px;
+            padding: 4px 14px;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px #ffd54f55;
+            z-index: 2;
+        }
+        /* Informasi Section */
+        .informasi-section {
+            background: #fff url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(46,125,50,0.09);
+            padding: 48px 32px;
+            margin-bottom: 48px;
+            animation: fadeInUp 1.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .informasi-section::before {
+            content: "";
+            position: absolute;
+            top: -40px; right: -40px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, #e8f5e9 60%, transparent 100%);
+            z-index: 0;
+        }
+        .informasi-title {
+            color: #2e7d32;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            font-family: 'Pacifico', cursive;
+        }
+        .informasi-heading {
+            color: #1b5e20;
+            font-size: 2.8rem;
+            font-weight: 700;
+            font-family: 'Pacifico', cursive;
+        }
+        .informasi-desc {
+            font-size: 1.15rem;
+            color: #444;
+        }
+        .btn-gradient {
+            background: linear-gradient(90deg, #43a047 0%, #81c784 100%);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 28px;
+            font-weight: bold;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(46,125,50,0.13);
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(90deg, #388e3c 0%, #66bb6a 100%);
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        footer {
+            background: #e8f5e9;
+            color: #388e3c;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        .footer-social {
+            margin-top: 8px;
+        }
+        .footer-social a {
+            color: #388e3c;
+            margin: 0 8px;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        .footer-social a:hover {
+            color: #ffb300;
+        }
+        @media (max-width: 768px) {
+            .carousel-inner, .carousel-item img {
+                height: 180px;
+            }
+            .informasi-section {
+                padding: 24px 8px;
+            }
+            .informasi-heading {
+                font-size: 2rem;
+            }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+</style>
+
 <body>
     <!-- Awal Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark mb-4 py-2 sticky-top shadow-sm" data-aos="fade-down">

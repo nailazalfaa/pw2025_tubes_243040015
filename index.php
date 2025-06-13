@@ -8,6 +8,14 @@ $error = ""; // Inisialisasi variabel error
 if (isset($_POST['login'])) {
     global $db;
 
+    // Jika login sebagai admin
+    if ($_POST["username"] == "admin d'pas" && $_POST["password"] == "admin123") {
+        $_SESSION['login'] = true;
+        $_SESSION['username'] = "admin d'pas";
+        header("Location: ./admin/php/dasboard.php");
+        exit;
+    }
+
     // Pastikan koneksi database tersedia
     if (!$db) {
         die("Koneksi database gagal: " . mysqli_connect_error());

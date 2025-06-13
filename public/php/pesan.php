@@ -31,7 +31,7 @@ if (isset($_POST['pesan'])) {
 </head>
 <body>
     <!-- Awal Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark mb-4 py-2 sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4 py-2 sticky-top shadow-sm" data-aos="fade-down">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center me-4" href="/php/home.php">
                 <img src="../img/logo.png" alt="Logo" class="img-fluid">
@@ -60,11 +60,11 @@ if (isset($_POST['pesan'])) {
     <!-- akhir navbar -->
 
     <!-- form pemesanan -->
-    <div class="container my-5">
+    <div class="container my-5" data-aos="fade-up">
         <div class="row justify-content-center">
             <div class="col-lg-7">
-                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
-                    <div class="card-header text-center p-4" style="background: linear-gradient(90deg, #8B4513 , #388e3c , #8B4513 )">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden" data-aos="zoom-in">
+                    <div class="card-header text-center p-4" style="background: linear-gradient(90deg, #8B4513 , #388e3c , #8B4513 )" data-aos="fade-down">
                         <h2 class="mb-1 text-white" style="font-family: 'Pacifico', cursive; letter-spacing:2px;">
                             <i class="fa-solid fa-bowl-food me-2"></i>Pesan Menu Favoritmu!
                         </h2>
@@ -72,16 +72,16 @@ if (isset($_POST['pesan'])) {
                             Nikmati hidangan lezat & minuman segar dari Dapur Pasundan
                         </p>
                     </div>
-                    <div class="card-body p-5 bg-light">
+                    <div class="card-body p-5 bg-light" data-aos="fade-up">
                         <form action="pesan.php" method="POST" autocomplete="off">
                             <div class="row g-3">
-                                <div class="col-md-12">
+                                <div class="col-md-12" data-aos="fade-right">
                                     <label for="nama" class="form-label fw-semibold">
                                         <i class="fa-solid fa-user"></i> Nama Pemesan
                                     </label>
                                     <input type="text" class="form-control rounded-3 shadow-sm" id="nama" name="nama_pelanggan" placeholder="Masukkan nama Anda" required>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" data-aos="fade-left">
                                     <label for="menu" class="form-label fw-semibold">
                                         <i class="fa-solid fa-utensils"></i> Pilih Menu
                                     </label>
@@ -121,33 +121,33 @@ if (isset($_POST['pesan'])) {
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" data-aos="fade-right">
                                     <label for="jumlah" class="form-label fw-semibold">
                                         <i class="fa-solid fa-sort-numeric-up"></i> Jumlah
                                     </label>
                                     <input type="number" class="form-control rounded-3 shadow-sm" id="jumlah" name="jumlah" min="1" placeholder="Jumlah" required>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" data-aos="fade-left">
                                     <label for="harga" class="form-label fw-semibold">
                                         <i class="fa-solid fa-money-bill-wave"></i> Harga (Rp)
                                     </label>
                                     <input type="number" class="form-control rounded-3 shadow-sm" id="harga" name="harga" min="0" placeholder="Harga satuan" required>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" data-aos="fade-up">
                                     <label for="catatan" class="form-label fw-semibold">
                                         <i class="fa-solid fa-pen"></i> Catatan Tambahan
                                     </label>
                                     <textarea class="form-control rounded-3 shadow-sm" id="catatan" name="catatan" rows="2" placeholder="Contoh: tanpa sambal, level pedas, dll."></textarea>
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 mt-4">
+                            <div class="d-grid gap-2 mt-4" data-aos="zoom-in">
                                 <button type="submit" class="btn btn-success btn-lg rounded-pill shadow" name="pesan">
                                     <i class="fa-solid fa-paper-plane"></i> Pesan Sekarang
                                 </button>
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer text-center bg-white border-0 py-3">
+                    <div class="card-footer text-center bg-white border-0 py-3" data-aos="fade-up">
                         <small class="text-muted">
                             Terima kasih telah memesan di <span class="fw-bold" style="color:#388e3c;">Dapur Pasundan</span>!
                             <i class="fa-solid fa-heart text-danger"></i>
@@ -162,7 +162,7 @@ if (isset($_POST['pesan'])) {
     <!-- akhir form pemesanan -->
 
     <!-- Awal Footer -->
-    <footer class="text-center py-3 mt-4">
+    <footer class="text-center py-3 mt-4" data-aos="fade-up">
         <span>&copy; <?= date('Y') ?> Dapur Pasundan. All rights reserved.</span>
         <div class="footer-social">
             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -172,7 +172,11 @@ if (isset($_POST['pesan'])) {
     </footer>
     <!-- Akhir Footer -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script>
+        AOS.init();
         function tampilkanNama() {
             const selectMenu = document.getElementById('menu');
             const selectedOption = selectMenu.options[selectMenu.selectedIndex];

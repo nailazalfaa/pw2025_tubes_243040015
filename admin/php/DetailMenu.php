@@ -43,7 +43,7 @@ $menu = $menu[0];
                     </a>
                 </li>
                 <li>
-                    <a href="../DataMenu.php" class="nav-link">
+                    <a href="../DataMenu.php" class="nav-link active">
                         <i class="bi bi-egg-fried me-2"></i>Data Menu
                     </a>
                 </li>
