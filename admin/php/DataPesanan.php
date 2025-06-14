@@ -11,6 +11,8 @@ if (isset($_POST['submit'])) {
   }
 } 
 
+$data_menu = select("SELECT * FROM data_menu");
+
 $data_pelanggan = select("SELECT * FROM data_pesanan");
 ?>
 <!DOCTYPE html>
@@ -83,9 +85,9 @@ $data_pelanggan = select("SELECT * FROM data_pesanan");
     <div class="container py-4">
     <h3 class="mb-4 fw-bold d-flex justify-content-between align-items-center">
       Daftar Pesanan
-      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahPesanan">
-      <i class="bi bi-plus-circle"></i> Tambah Pesanan
-      </button>
+     <a href="../../public/php/pesan.php" class="btn btn-success">
+      <i class="bi bi-cart-plus"></i> Pesan Sekarang
+    </a>
     </h3>
     <div class="table-responsive">
       <table class="table table-hover table-striped align-middle" id="table">
@@ -136,38 +138,6 @@ $data_pelanggan = select("SELECT * FROM data_pesanan");
   </div>
 
   <!-- Modal Tambah Pesanan -->
-  <div class="modal fade" id="modalTambahPesanan" tabindex="-1" aria-labelledby="modalTambahPesananLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form method="POST" class="modal-content" enctype="multipart/form-data">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalTambahPesananLabel">Tambah Data Pesanan</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="nama_pelanggan" class="form-label">Nama Pelanggan</label>
-            <input type="text" class="form-control" id="nama_pelanggan" name="nama_pelanggan" required>
-          </div>
-          <div class="mb-3">
-            <label for="menu" class="form-label">Menu</label>
-            <input type="text" class="form-control" id="menu" name="menu" required>
-          </div>
-          <div class="mb-3">
-            <label for="jumlah" class="form-label">Jumlah</label>
-            <input type="number" class="form-control" id="jumlah" name="jumlah" min="1" required>
-          </div>
-          <div class="mb-3">
-            <label for="harga" class="form-label">Harga</label>
-            <input type="number" class="form-control" id="harga" name="harga" min="0" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-success" name="submit">Simpan</button>
-        </div>
-      </form>
-    </div>
-  </div>
     </div>
   </div>
   </div>
