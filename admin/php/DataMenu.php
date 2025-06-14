@@ -70,18 +70,18 @@ if (isset($_POST['submit'])) {
     <nav class="navbar navbar-expand navbar-light bg-white border-bottom">
     <div class="container-fluid justify-content-end">
       <div class="dropdown">
-    <img src="https://ui-avatars.com/api/?name=<?= urlencode(substr('nailazalfa',0,1)) ?>&background=198754&color=fff" class="avatar" alt="avatar">
-    <span class="me-2 fw-semibold"><?= htmlspecialchars('nailazalfa'); ?></span>
+    <img src="https://ui-avatars.com/api/?name=<?= urlencode(substr('admin dpas', 0, 1)) ?>&background=198754&color=fff" class="avatar" alt="avatar">
+    <span class="me-2 fw-semibold"><?= htmlspecialchars('admin dpas'); ?></span>
     <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
       ▼
     </button>
     <ul class="dropdown-menu dropdown-menu-end">
       <li>
-      <form method="POST" class="d-inline">
-      <button type="submit" name="logout" class="dropdown-item" href="../../index.php">Logout</button>
-      </form>
+        <form method="POST" action="../../index.php" class="d-inline">
+          <button type="submit" name="logout" class="dropdown-item">Logout</button>
+        </form>
       </li>
-    </ul>
+    </ul
       </div>
     </div>
     </nav>
